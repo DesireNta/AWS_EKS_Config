@@ -1,1 +1,6 @@
+<<<<<<< HEAD
 .terraform/
+*.swo
+*.swp
+.terraform/
+>>>>>>> 03d2e05a6582eac078a30bf6229495f1e39bdecc
