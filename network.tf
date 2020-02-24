@@ -1,5 +1,5 @@
 resource "aws_vpc" "s05_principal" {
-   cidr_block = "10.0.0.0/16"
+   cidr_block = "10.5.0.0/16"
 
    tags = {
      "Name"                                      = "terraform-eks-s05-node"
@@ -8,7 +8,7 @@ resource "aws_vpc" "s05_principal" {
 
  resource "aws_subnet" "s05_subnet" {
    count = 2
-   cidr_block        = "10.0.${count.index}.0/24"
+   cidr_block        = "10.5.${count.index}.0/24"
    vpc_id            = aws_vpc.s05_principal.id
 
    tags = {
