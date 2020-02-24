@@ -3,7 +3,7 @@ resource "aws_iam_role" "s05-node" {
 
   assume_role_policy = <<POLICY
 {
-  "Version": "2020-02-24",
+  "Version": "2012-10-17",
   "Statement": [
     {
       "Effect": "Allow",
