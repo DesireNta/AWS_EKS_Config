@@ -2,7 +2,7 @@ resource "aws_vpc" "s05_principal" {
    cidr_block = "10.5.0.0/16"
 
    tags = {
-     "Name"                                      = "terraform-eks-s05-node"
+     "Name" = "terraform-eks-s05-node"
    }
  }
 
@@ -12,7 +12,7 @@ resource "aws_vpc" "s05_principal" {
    vpc_id            = aws_vpc.s05_principal.id
 
    tags = {
-     "Name"                                      = "terraform-eks-s05-node"
+     "Name" = "terraform-eks-s05-node"
    }
  }
 
