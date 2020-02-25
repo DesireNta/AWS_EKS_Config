@@ -1,6 +1,6 @@
 
 variable "region_number" {
-   default = [ "eu-west-1a","eu-west-1b"]
+   default = [ "eu-west-2c","eu-west-2b"]
 }
 
 resource "aws_vpc" "s05_principal" {
