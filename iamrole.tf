@@ -1,3 +1,8 @@
+resource "aws_iam_instance_profile" "profile" {
+  name = "test_profile"
+  role = aws_iam_role.s05-node.name
+}
+
 resource "aws_iam_role" "s05-node" {
   name = "terraform-eks-s05-cluster"
 

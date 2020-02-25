@@ -27,7 +27,7 @@ USERDATA
 
 resource "aws_launch_configuration" "s05_launch_config" {
   associate_public_ip_address = true
-  #iam_instance_profile        = aws_iam_instance_profile.s05-node.name
+  iam_instance_profile        = aws_iam_instance_profile.profile.name
   image_id                    = data.aws_ami.eks-worker.id
   instance_type               = "m4.large"
   name_prefix                 = "terraform-eks-s05_ntambiye"
