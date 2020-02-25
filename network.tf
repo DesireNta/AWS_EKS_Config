@@ -1,3 +1,8 @@
+
+variable "region_number" {
+   default = [ "eu-west-1a","eu-west-1b"]
+}
+
 resource "aws_vpc" "s05_principal" {
    cidr_block = "10.5.0.0/16"
 
@@ -10,7 +15,7 @@ resource "aws_vpc" "s05_principal" {
    count = 2
    cidr_block        = "10.5.${count.index}.0/24"
    vpc_id            = aws_vpc.s05_principal.id
-
+   availability_zone = var.region_number["${count.index}"]
    tags = {
      "Name" = "terraform-eks-s05-node"
    }
