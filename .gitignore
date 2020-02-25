@@ -2,4 +2,4 @@
 *.swo
 *.swp
 .terraform/
-
+config_map_aws_auth.yaml

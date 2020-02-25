@@ -27,11 +27,12 @@ USERDATA
 
 resource "aws_launch_configuration" "s05_launch_config" {
   associate_public_ip_address = true
+  #iam_instance_profile        = aws_iam_instance_profile.s05-node.name
   image_id                    = data.aws_ami.eks-worker.id
   instance_type               = "m4.large"
   name_prefix                 = "terraform-eks-s05_ntambiye"
-  security_groups  = [aws_security_group.s05-node.id]
-
+  security_groups             = [aws_security_group.s05-node.id]
+  user_data_base64            = base64encode(local.eks-node-private-userdata)
   lifecycle {
     create_before_destroy = true
   }

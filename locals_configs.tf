@@ -7,10 +7,10 @@ clusters:
 - cluster:
     server: ${aws_eks_cluster.s05_ntambiye_eks.endpoint}
     certificate-authority-data: ${aws_eks_cluster.s05_ntambiye_eks.certificate_authority.0.data}
-  name: ingecloud-eks-05
+  name: s05_ntambiye
 contexts:
 - context:
-    cluster: ingecloud-eks-05
+    cluster: s05_ntambiye
     user: aws
   name: aws
 current-context: aws
@@ -43,7 +43,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: aws-ntambiye
-  namespace: kube-ntambiye
+  namespace: default
 data:
   mapRoles: |
     - rolearn: ${aws_iam_role.s05-node.arn}
@@ -58,3 +58,11 @@ CONFIGMAPAWSAUTH
 output "config_map_aws_auth" {
   value = local.config_map_aws_auth
 }
+
+locals {
+  eks-node-private-userdata = <<USERDATA
+#!/bin/bash -xe
+sudo /etc/eks/bootstrap.sh --apiserver-endpoint '${aws_eks_cluster.s05_ntambiye_eks.endpoint}' --b64-cluster-ca '${aws_eks_cluster.s05_ntambiye_eks.certificate_authority.0.data}' '${var.s05_ntambiye}'
+USERDATA
+}
+
