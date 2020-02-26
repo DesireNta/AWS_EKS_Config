@@ -8,6 +8,7 @@ resource "aws_vpc" "s05_principal" {
 
    tags = {
      "Name" = "terraform-eks-s05-node"
+     "kubernetes.io/cluster/${var.s05_ntambiye}" = "shared"
    }
  }
 

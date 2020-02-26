@@ -29,7 +29,7 @@ resource "aws_launch_configuration" "s05_launch_config" {
   associate_public_ip_address = true
   iam_instance_profile = aws_iam_instance_profile.profile.name
   image_id = data.aws_ami.eks-worker.id
-  instance_type = "m4.large"
+  instance_type = "t2.micro"
   name_prefix  = "terraform-eks-s05_ntambiye"
   security_groups = [aws_security_group.s05-node.id]
   user_data_base64 = base64encode(local.eks-node-private-userdata)
@@ -39,9 +39,9 @@ resource "aws_launch_configuration" "s05_launch_config" {
 }
 
 resource "aws_autoscaling_group" "s05_autoscaling_group" {
-  desired_capacity     = 2
+  desired_capacity     = 3
   launch_configuration = aws_launch_configuration.s05_launch_config.id
-  max_size             = 2
+  max_size             = 4
   min_size             = 1
   name                 = "terraform-eks-s05_ntambiye"
   vpc_zone_identifier = [aws_subnet.s05_subnet[0].id,aws_subnet.s05_subnet[1].id]
