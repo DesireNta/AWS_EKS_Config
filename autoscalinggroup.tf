@@ -42,7 +42,7 @@ resource "aws_autoscaling_group" "s05_autoscaling_group" {
   desired_capacity     = 0
   launch_configuration = aws_launch_configuration.s05_launch_config.id
   max_size             = 4
-  min_size             = 1
+  min_size             = 0
   name                 = "terraform-eks-s05_ntambiye"
   vpc_zone_identifier = [aws_subnet.s05_subnet[0].id,aws_subnet.s05_subnet[1].id]
 
