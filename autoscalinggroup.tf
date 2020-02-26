@@ -39,7 +39,7 @@ resource "aws_launch_configuration" "s05_launch_config" {
 }
 
 resource "aws_autoscaling_group" "s05_autoscaling_group" {
-  desired_capacity     = 0
+  desired_capacity     = 2
   launch_configuration = aws_launch_configuration.s05_launch_config.id
   max_size             = 4
   min_size             = 0
