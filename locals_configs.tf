@@ -43,7 +43,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: aws-ntambiye
-  namespace: default
+  namespace: kube-system
 data:
   mapRoles: |
     - rolearn: ${aws_iam_role.s05-node.arn}
@@ -59,10 +59,4 @@ output "config_map_aws_auth" {
   value = local.config_map_aws_auth
 }
 
-locals {
-  eks-node-private-userdata = <<USERDATA
-#!/bin/bash -xe
-sudo /etc/eks/bootstrap.sh --apiserver-endpoint '${aws_eks_cluster.s05_ntambiye_eks.endpoint}' --b64-cluster-ca '${aws_eks_cluster.s05_ntambiye_eks.certificate_authority.0.data}' '${var.s05_ntambiye}'
-USERDATA
-}
 

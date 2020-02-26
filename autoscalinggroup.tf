@@ -32,14 +32,14 @@ resource "aws_launch_configuration" "s05_launch_config" {
   instance_type = "t2.micro"
   name_prefix  = "terraform-eks-s05_ntambiye"
   security_groups = [aws_security_group.s05-node.id]
-  user_data_base64 = base64encode(local.eks-node-private-userdata)
+  user_data_base64 = base64encode(local.s05-node-userdata)
   lifecycle {
     create_before_destroy = true
   }
 }
 
 resource "aws_autoscaling_group" "s05_autoscaling_group" {
-  desired_capacity     = 3
+  desired_capacity     = 0
   launch_configuration = aws_launch_configuration.s05_launch_config.id
   max_size             = 4
   min_size             = 1
